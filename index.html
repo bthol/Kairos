@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./main.js"></script>
+    <title>Kairos</title>
+</head>
+<body>
+    <div id="waiting-time-form-container">
+        <div id="ans"></div>
+        
+        <form id="waiting-time-form" action="./" method="POST" >
+        <div>
+            <label>Start Time</label>
+            <input name="start" type="time" required />
+        </div>
+
+        <div>
+            <label>Wait Time</label>
+            <input name="wait" type="number" min="1" value="1" required />
+        </div>
+
+        <div>
+            <label>12 hour</label>
+            <input name="cycle" type="checkbox" checked/>
+        </div>
+        
+        <button name="submit" type="submit">submit</button>
+        
+        </form>
+    </div>
+
+    <br/>
+
+    <div id="count-down-form-container">
+        
+        <div id="count-down-num">0</div>
+        
+        <form id="count-down-form" action="./" method="POST">
+        <input name="num" type="number" min="1" value="60" required/>
+        <select name="inputUnit">
+            <option value="1">Seconds</option>
+            <option value="2">Minutes</option>
+            <option value="3">Hours</option>
+        </select>
+        <button id="cd-cntrl-start" type="button">Start</button>
+        <button id="cd-cntrl-pause" type="button">Pause</button>
+        <button id="cd-cntrl-reset" type="button">Reset</button>
+        </form>
+        
+    </div>
+</body>
+</html>

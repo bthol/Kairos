@@ -1,2 +1,4 @@
 # Kairos
 Developer: Blake Thollaug
+
+Description: Time, our most precious resource, is both proximate and ultimate; without it, the universe would be a static scuplture of its temporal self, infinitely fixed in tired form, and only with it does change become possible and force become real. Time, the greatest warrior, defeats even the most enduring of things, and it champions the legacy of all legacies, claiming the nature of events itself. I will always be the oldest I ever was, but before I perish, I would like to spend what time I can afford on those activities far and few between that are truly meaningful to me. That is why I have developed Kairos. This application is an instrument for those temporary ones to know the right time to do what truly matters to them.
