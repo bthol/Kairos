@@ -104,7 +104,7 @@ function cdUnitConvert() {
   cdVal = cdForm.num.value * magniMult;
 }
 
-function cdFormat() {
+function formatTime(secs) {
   let hours, minutes, seconds;
   hours = `${Math.floor(cdVal / 3600)}`;
   minutes = `${Math.floor((cdVal / 60) - (hours * 60))}`;
@@ -112,29 +112,29 @@ function cdFormat() {
   if (hours.length < 2) {
     if (minutes.length < 2) {
       if (seconds.length < 2) {
-        cdValDOM.innerText = "0" + hours + " : " + "0" + minutes + " : " + "0" + seconds;
+        return "0" + hours + " : " + "0" + minutes + " : " + "0" + seconds;
       } else {
-        cdValDOM.innerText = "0" + hours + " : " + "0" + minutes + " : " + seconds;
+        return "0" + hours + " : " + "0" + minutes + " : " + seconds;
       }
     } else {
       if (seconds.length < 2) {
-        cdValDOM.innerText = "0" + hours + " : " + minutes + " : " + "0" + seconds;
+        return "0" + hours + " : " + minutes + " : " + "0" + seconds;
       } else {
-        cdValDOM.innerText = "0" + hours + " : " + minutes + " : " + seconds;
+        return "0" + hours + " : " + minutes + " : " + seconds;
       }
     }
   } else {
     if (minutes.length < 2) {
       if (seconds.length < 2) {
-        cdValDOM.innerText = hours + " : " + "0" + minutes + " : " + "0" + seconds;
+        return hours + " : " + "0" + minutes + " : " + "0" + seconds;
       } else {
-        cdValDOM.innerText = hours + " : " + "0" + minutes + " : " + seconds;
+        return hours + " : " + "0" + minutes + " : " + seconds;
       }
     } else {
       if (seconds.length < 2) {
-        cdValDOM.innerText = hours + " : " + minutes + " : " + "0" + seconds;
+        return hours + " : " + minutes + " : " + "0" + seconds;
       } else {
-        cdValDOM.innerText = hours + " : " + minutes + " : " + seconds;
+        return hours + " : " + minutes + " : " + seconds;
       }
     }
   }
@@ -144,7 +144,7 @@ function countDown() {
   cdCache = setInterval(() => {
     cdVal -= 1;
     if (cdVal >= 0) {
-      cdFormat();
+      cdValDOM.innerText = formatTime(cdVal);
     } else {
       clearInterval(cdCache);
       cdStartListen();
@@ -166,14 +166,15 @@ function cdReset() {
   clearInterval(cdCache);
   cdVal = cdForm.num.value;
   cdUnitConvert();
-  cdFormat();
+  cdValDOM.innerText = formatTime(cdVal);
 };
 
 function cdStartListen() {
   cdCntrlStart.addEventListener("click", l1 = (e) => {
     e.preventDefault();
+    cdForm.inputUnit.removeEventListener("change", runCdFormDefault);
     cdUnitConvert();
-    cdFormat();
+    cdValDOM.innerText = formatTime(cdVal);
     countDown();
 
     cdPauseToggle = true;
@@ -183,6 +184,7 @@ function cdStartListen() {
     
     cdCntrlReset.addEventListener("click", l3 =  () => {
       cdCntrlPause.removeEventListener("click", l2);
+      cdForm.inputUnit.addEventListener("change", runCdFormDefault);
       cdReset();
       cdStartListen();
     }, {once:true});
@@ -192,7 +194,9 @@ function cdStartListen() {
 
 function runCdFormDefault() {
   cdUnitConvert();
-  cdFormat();
-  cdStartListen();
+  cdValDOM.innerText = formatTime(cdVal);
 };
 runCdFormDefault();
+cdStartListen();
+
+cdForm.inputUnit.addEventListener("change", runCdFormDefault);
