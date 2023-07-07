@@ -18,8 +18,6 @@ if (today.getHours() < 10) {
   }
 }
 
-console.log("linked");
-
 waitForm.addEventListener("submit", (e) => {onSubmit(e)});
 
 function onSubmit(e) {
@@ -167,6 +165,7 @@ function cdPause() {
 function cdReset() {
   clearInterval(cdCache);
   cdVal = cdForm.num.value;
+  cdUnitConvert();
   cdFormat();
 };
 
