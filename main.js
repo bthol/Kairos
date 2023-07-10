@@ -55,6 +55,9 @@ function calcWait(start, wait, cycle) {
     } else {
       endAmPm = " PM";
     }
+    if (endHrs < 1) {
+      endHrs += 12;
+    }
     if (endHrs > 12) {
       endHrs = endHrs - 12;
     }
